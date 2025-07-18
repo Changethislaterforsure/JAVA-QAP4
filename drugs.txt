@@ -1,1 +1,2 @@
-48772,The Good Stuff,39.99,20Mg
+244,Synthroid,12.99,30Mg
+277,B12,49.99,1000Mcg
