@@ -8,11 +8,13 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n==== DRUG FILE MENU ====");
+            System.out.println("\n===== MAIN MENU =====");
             System.out.println("1. Save Drugs to File");
             System.out.println("2. Read Drugs from File");
-            System.out.println("3. Exit");
-            System.out.print("Enter your choice (1-3): ");
+            System.out.println("3. Save Patient to Database");
+            System.out.println("4. Read Patients from Database");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice (1-5): ");
 
             String choice = scanner.nextLine();
 
@@ -52,12 +54,38 @@ public class Main {
                     break;
 
                 case "3":
+                    System.out.println("\nEnter new patient details:");
+                    System.out.print("ID: ");
+                    int pid = Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("First Name: ");
+                    String firstName = scanner.nextLine();
+
+                    System.out.print("Last Name: ");
+                    String lastName = scanner.nextLine();
+
+                    System.out.print("Date of Birth (e.g., 1990-05-12): ");
+                    String dob = scanner.nextLine();
+
+                    Patient newPatient = new Patient(pid, firstName, lastName, dob);
+                    DatabaseManager.savePatientToDatabase(newPatient);
+                    break;
+
+                case "4":
+                    List<Patient> patients = DatabaseManager.readPatientsFromDatabase();
+                    System.out.println("\n=== Patients from Database ===");
+                    for (Patient p : patients) {
+                        System.out.println(p);
+                    }
+                    break;
+
+                case "5":
                     System.out.println("Exiting program.");
                     running = false;
                     break;
 
                 default:
-                    System.out.println("Invalid choice. Please enter 1, 2 or 3.");
+                    System.out.println("Invalid choice. Please enter 1-5.");
                     break;
             }
         }
